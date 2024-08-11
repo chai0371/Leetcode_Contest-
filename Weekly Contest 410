@@ -1,0 +1,40 @@
+// snake In matrix (easy Problem )
+
+
+import java.util.List;
+
+class Solution {
+    public int finalPositionOfSnake(int n, List<String> commands) {
+        // Start at the top-left corner (0, 0)
+        int i = 0, j = 0;
+
+        // Process each command
+        for (String command : commands) {
+            switch (command) {
+                case "UP":
+                    i -= 1;
+                    break;
+                case "DOWN":
+                    i += 1;
+                    break;
+                case "LEFT":
+                    j -= 1;
+                    break;
+                case "RIGHT":
+                    j += 1;
+                    break;
+            }
+        }
+
+        // Calculate the final position in the grid
+        return i * n + j;
+    }
+    
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int n = 2;
+        List<String> commands = List.of("RIGHT", "DOWN");
+        int result = solution.finalPositionOfSnake(n, commands);
+        System.out.println(result);  // Output should be 3
+    }
+}
