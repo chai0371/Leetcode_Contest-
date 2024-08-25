@@ -1,0 +1,36 @@
+1) Final Array State After K Multiplication Operations I
+import java.util.*;
+
+public class Solution {
+    public int[] getFinalState(int[] nums, int k, int multiplier) {
+        // Create a priority queue to store pairs of (value, index)
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> {
+            if (a[0] == b[0]) {
+                return a[1] - b[1];  // Compare by index if values are the same
+            } else {
+                return a[0] - b[0];  // Otherwise, compare by value
+            }
+        });
+        
+        // Initialize the priority queue with all elements from nums
+        for (int i = 0; i < nums.length; i++) {
+            pq.offer(new int[]{nums[i], i});
+        }
+        
+        // Perform k operations
+        for (int i = 0; i < k; i++) {
+            // Get the minimum element (value, index) from the priority queue
+            int[] minElement = pq.poll();
+            int value = minElement[0];
+            int index = minElement[1];
+            
+            // Update the array
+            nums[index] *= multiplier;
+            
+            // Add the updated element back into the priority queue
+            pq.offer(new int[]{nums[index], index});
+        }
+        
+        return nums;
+    }
+}
