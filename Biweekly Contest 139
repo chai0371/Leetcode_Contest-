@@ -1,0 +1,18 @@
+1) Find Indices Of Stable Mountains 
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution {
+    public List<Integer> stableMountains(int[] height, int threshold) {
+        List<Integer> stableMountains = new ArrayList<>();
+
+        // Start from mountain 1 since mountain 0 cannot be stable
+        for (int i = 1; i < height.length; i++) {
+            if (height[i - 1] > threshold) {
+                stableMountains.add(i);
+            }
+        }
+
+        return stableMountains;
+    }
