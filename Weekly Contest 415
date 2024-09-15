@@ -1,0 +1,26 @@
+1) The two SneakeyNumbers Of DigitVille 
+
+import java.util.HashSet;
+
+public class Solution {
+    public int[] getSneakyNumbers(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+        int[] repeatedNumbers = new int[2];
+        int index = 0;
+
+        // Iterate through the nums array
+        for (int num : nums) {
+            // If the number is already in the set, it's a repeated number
+            if (!set.add(num)) {
+                // Store the repeated number in repeatedNumbers array
+                repeatedNumbers[index] = num;
+                index++;
+                // Stop once we've found two repeated numbers
+                if (index == 2) {
+                    break;
+                }
+            }
+        }
+        
+        return repeatedNumbers;  // Return the array containing the two repeated numbers
+    }
