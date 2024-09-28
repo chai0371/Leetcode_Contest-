@@ -1,0 +1,26 @@
+1) Minimum Elemenet After Replecement With Digit Sum
+
+public class Solution {
+
+    private static int sumOfDigits(int num) {
+        int sum = 0;
+        while (num > 0) {
+            sum += num % 10;
+            num /= 10;
+        }
+        return sum;
+    }
+
+    public static int minElement(int[] nums) {
+        int min = Integer.MAX_VALUE;
+        for (int num : nums) {
+         
+            int sumDigits = sumOfDigits(num);
+            
+            min = Math.min(min, sumDigits);
+        }
+        return min;
+    }
+
+ 
+}
