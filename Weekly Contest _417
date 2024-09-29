@@ -1,0 +1,64 @@
+1) Find the Kth Character in String Game I
+
+public class Solution{
+    public char kthCharacter(int k){
+        StringBuilder word=new StringBuilder("a");
+        
+          while(word.length()<k){
+              StringBuilder newStr=new StringBuilder();
+              for(char ch:word.toString().toCharArray()){
+                  if(ch=='z'){
+                      newStr.append('a');
+                  }else{
+                      newStr.append((char)(ch+1));
+                  }
+              }
+                word.append(newStr);
+          }
+        return word.charAt(k-1);
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+2) Count of SubString Containing Every Vowel AND k consonant I
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Solution {
+    
+    private static boolean isVowel(char c) {
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
+    }
+
+    public static int countOfSubstrings(String word, int k) {
+        int n = word.length();
+        int count = 0;
+
+        for (int i = 0; i < n; i++) {
+            Set<Character> vowels = new HashSet<>();
+            int consonantCount = 0;
+
+            for (int j = i; j < n; j++) {
+                char currentChar = word.charAt(j);
+
+                if (isVowel(currentChar)) {
+                    vowels.add(currentChar);
+                } else {
+                    consonantCount++;
+                }
+
+                if (vowels.size() == 5 && consonantCount == k) {
+                    count++;
+                }
+
+                if (consonantCount > k) {
+                    break;
+                }
+            }
+        }
+        
+        return count;
+    }
+}
