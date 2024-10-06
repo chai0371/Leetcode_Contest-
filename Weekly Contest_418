@@ -1,0 +1,27 @@
+1) Maximun possible Number By Binary Concatation 
+
+import java.util.Arrays;
+
+class Solution{
+    
+    private String toBinaryString(int num){
+        return Integer.toBinaryString(num);
+    }
+    
+    public int maxGoodNumber(int [] nums){
+        String[] binaryStrings= new String[nums.length];
+        for(int i=0;i<nums.length;i++){
+            binaryStrings[i]=toBinaryString(nums[i]);
+        }
+        
+        Arrays.sort(binaryStrings, (a,b) -> (b+a).compareTo(a+b));
+        StringBuilder maxBinaryString= new StringBuilder();
+        for(String binary: binaryStrings){
+            maxBinaryString.append(binary);
+        }
+        return Integer.parseInt(maxBinaryString.toString(),2);
+        
+        
+    }
+    
+}
