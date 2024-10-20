@@ -1,0 +1,27 @@
+1) Find The Sequence Of String Appear on Screen 
+
+import java.util.ArrayList;
+import java.util.List;
+
+class Solution {
+    public List<String> stringSequence(String target){
+        List<String> result= new ArrayList<>();
+        StringBuilder currentString= new StringBuilder();
+        
+        for(int i=0;i<target.length();i++){
+            char targetChar=target.charAt(i);
+            
+            currentString.append('a');
+            result.add(currentString.toString());
+            
+            
+            while(currentString.charAt(i)!=targetChar){
+                currentString.setCharAt(i,(char)(currentString.charAt(i)+1));
+                result.add(currentString.toString());                         
+            }
+        }
+return result;
+        
+    }
+   
+}
